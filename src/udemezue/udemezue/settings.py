@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'graphene_django',
+    'corsheaders',
 
 
     'account',
@@ -55,6 +56,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+     'corsheaders.middleware.CorsMiddleware',
+  
 ]
 
 ROOT_URLCONF = 'udemezue.urls'
@@ -138,3 +142,11 @@ GRAPHENE = {
 
  }
 
+CORS_ALLOWED_ORIGINS = [
+    'http://read.only.com',
+    'http://change.allowed.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'change.allowed.com',
+]
