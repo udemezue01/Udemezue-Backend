@@ -102,15 +102,6 @@ class User (AbstractBaseUser):
 		return self.is_admin
 
 
-	# @property
-	# def owner(self):
-	# 	return self.full
-
-	# @property
-	# def user(self):
-	# 	instance = self
-	# 	return Profile.objects.filter_by_instance(instance)
-
 
 
 
