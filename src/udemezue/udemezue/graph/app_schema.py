@@ -36,9 +36,14 @@ class ProfileType(DjangoObjectType):
 
 class PortfolioType(DjangoObjectType):
 
+	image 	= graphene.String()
+
 	class Meta:
 
 		model = Portfolio
+
+	def resolve_image(self, info):
+		return info.context.build_absolute_uri(self.image.url)
 
 
 
