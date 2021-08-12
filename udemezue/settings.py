@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '56rnlthw%j**p#+0*1!-j3v==9+es(8b*mnk(9h=b&@s56787$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
 
@@ -91,12 +91,39 @@ WSGI_APPLICATION = 'udemezue.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+
+
+
+if DEBUG:
+
+
+    DATABASES={
+
+        'default' :{
+
+            'ENGINE':'django.db.backends.sqlite3',
+            'NAME': BASE_DIR /'db/sqlite3',
+
+
+        }
     }
-}
+
+
+
+
+
+
+
+
+
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+
+
+
 
 
 # Password validation
@@ -189,6 +216,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # The database configuration.
 
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
