@@ -157,9 +157,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'account.user'
 
@@ -180,6 +177,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
 
     'http://localhost:8080',
+    'https://udemezue.vercel.app',
 ]
 
 
@@ -200,6 +198,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 
 STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
