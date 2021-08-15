@@ -95,15 +95,12 @@ WSGI_APPLICATION = 'udemezue.wsgi.application'
 
 
 
-if DEBUG:
-
-
-    DATABASES={
+DATABASES={
 
         'default' :{
 
             'ENGINE':'django.db.backends.sqlite3',
-            'NAME': BASE_DIR /'db/sqlite3',
+            'NAME': BASE_DIR /'db.sqlite3',
 
 
         }
@@ -214,5 +211,7 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# The database configuration.
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
 
