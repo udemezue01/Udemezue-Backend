@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,11 +27,7 @@ SECRET_KEY = '56rnlthw%j**p#+0*1!-j3v==9+es(8b*mnk(9h=b&@s56787$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-
- 'udemezue.herokuapp.com',
-
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -199,13 +196,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
+
+STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
-     os.path.join(BASE_DIR, 'static'),
-)
+
+    os.path.join(BASE_DIR, 'static'),
+
+    )
 
 #  Add configuration for static files storage using whitenoise
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -214,6 +215,6 @@ STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 # Configure Django App for Heroku.
-import django_heroku
+
 django_heroku.settings(locals())
 
