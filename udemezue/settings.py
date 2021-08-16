@@ -106,14 +106,6 @@ DATABASES={
     }
 
 
-
-
-
-
-
-
-
-
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
@@ -190,36 +182,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# Heroku Related Settings.
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
-
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # MEDIA_URL = '/media/'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Extra lookup directories for collectstatic to find static files
-# STATICFILES_DIRS = (
-
-#     os.path.join(BASE_DIR, 'static'),
-
-#     )
-
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage' 
+
 
 
 # Configure Django App for Heroku.
 
-django_heroku.settings(locals(),staticfiles=False)
+django_heroku.settings(locals(),)
 
