@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'graphene_django',
     'corsheaders',
 
+    'cloudinary_storage',
+    'cloudinary',
+
 
     'account',
     'portfolio',
@@ -207,4 +210,18 @@ STATICFILES_DIRS = (
 # Configure Django App for Heroku.
 
 django_heroku.settings(locals(),)
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'zealioth',
+    'API_KEY': '622572618154381',
+    'API_SECRET': 'QQhgkMFnNrGn63ibodA5kLfHNDc'
+}
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
 
