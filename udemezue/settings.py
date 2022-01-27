@@ -56,7 +56,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -92,8 +91,6 @@ WSGI_APPLICATION = 'udemezue.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
 
 
 
@@ -158,7 +155,7 @@ USE_TZ = True
 AUTH_USER_MODEL = 'account.user'
 
 
-# Graph QL settings
+# Graph QL settings and Third part settings
 
 GRAPHENE = { 
 
@@ -184,7 +181,6 @@ CSRF_TRUSTED_ORIGINS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -196,23 +192,24 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'  # or any prefix you choose
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # STATICFILES_DIRS = (
 
-
+#       os.path.join(BASE_DIR, 'static'),
 
 #     )
 
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Configure Django App for Heroku.
+
+
 
 django_heroku.settings(locals(),)
 
