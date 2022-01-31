@@ -9,7 +9,7 @@ class Profile(models.Model):
 
 	user 			=  models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 
-	avatar			= models.FileField(blank = True)
+	avatar			= models.ImageField(upload_to='images/', blank = True)
 	bio 			= models.CharField(blank = True, max_length = 3000)
 
 	twitter 		= models.CharField(blank = True, max_length = 3000)

@@ -12,7 +12,7 @@ class Post(models.Model):
 	title 			=  models.CharField(max_length = 3000)
 	slug 			=  models.SlugField(max_length = 3000, blank = True, null = True)
 	content			=  models.CharField(max_length = 30000)
-	image 			=  models.FileField(blank = True)
+	image 			=  models.ImageField(upload_to='images/', blank = True)
 
 	def __str__(self):
 

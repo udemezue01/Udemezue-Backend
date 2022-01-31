@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '56rnlthw%j**p#+0*1!-j3v==9+es(8b*mnk(9h=b&@s56787$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +43,9 @@ INSTALLED_APPS = [
     'graphene_django',
     'corsheaders',
 
+    'cloudinary_storage',
+    'cloudinary',
+
 
     'account',
     'portfolio',
@@ -50,6 +54,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,12 +92,25 @@ WSGI_APPLICATION = 'udemezue.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+
+DATABASES={
+
+        'default' :{
+
+            'ENGINE':'django.db.backends.sqlite3',
+            'NAME': BASE_DIR /'db.sqlite3',
+
+        }
     }
-}
+
+
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+
+
+
 
 
 # Password validation
@@ -130,17 +149,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'account.user'
 
 
-# Graph QL settings
+# Graph QL settings and Third part settings
 
 GRAPHENE = { 
 
@@ -156,6 +170,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
 
     'http://localhost:8080',
+    'https://udemezue.vercel.app',
 ]
 
 
@@ -163,3 +178,41 @@ CSRF_TRUSTED_ORIGINS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'zealioth',
+    'API_KEY': '622572618154381',
+    'API_SECRET': 'QQhgkMFnNrGn63ibodA5kLfHNDc'
+}
+
+MEDIA_URL = '/media/'  
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATICFILES_DIRS = (
+
+#       os.path.join(BASE_DIR, 'static'),
+
+#     )
+
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+# Configure Django App for Heroku.
+
+
+
+django_heroku.settings(locals(),)
+
+
+
+
+
