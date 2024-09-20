@@ -170,7 +170,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
 
     'http://localhost:8080',
-    'https://udemezue.vercel.app',
+    'https://udemezue.pages.dev',
 ]
 
 
