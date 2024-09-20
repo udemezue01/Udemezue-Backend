@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'graphene_django',
     'corsheaders',
 
-    'cloudinary_storage',
-    'cloudinary',
-
 
     'account',
     'portfolio',
