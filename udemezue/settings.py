@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,9 +42,6 @@ INSTALLED_APPS = [
 
     'graphene_django',
     'corsheaders',
-
-    'cloudinary_storage',
-    'cloudinary',
 
 
     'account',
@@ -103,12 +100,6 @@ DATABASES={
 
         }
     }
-
-
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
-
 
 
 
@@ -183,11 +174,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'zealioth',
-    'API_KEY': '622572618154381',
-    'API_SECRET': 'QQhgkMFnNrGn63ibodA5kLfHNDc'
-}
 
 MEDIA_URL = '/media/'  
 
@@ -202,15 +188,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #     )
 
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-
-# Configure Django App for Heroku.
-
-
-
-django_heroku.settings(locals(),)
 
 
 
