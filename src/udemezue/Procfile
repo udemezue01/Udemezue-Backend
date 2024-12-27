@@ -1,0 +1,1 @@
+web: gunicorn udemezue.wsgi --log-file -
